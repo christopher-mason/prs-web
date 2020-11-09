@@ -30,5 +30,29 @@ public class UserController {
 	}
 	
 	// Add User
+	@PostMapping("/")
+	public User addUser(@RequestBody User u) {
+		u = userRepo.save(u);
+		return u;
+	}
+	
+	// Update User
+	@PutMapping("/")
+	public User updateUser(@RequestBody User u) {
+		u = userRepo.save(u);
+		return u;
+	}
+	
+	// Delete User
+	@DeleteMapping("/{id}")
+	public User deleteUser(@PathVariable int id) {
+		Optional<User> u = userRepo.findById(id);
+		if (u.isPresent()) {
+			userRepo.deleteById(id);
+		} else {
+			System.out.println("Error - User not found with ID: " + id);
+		}
+		return u.get();
+	}
 	
 }
