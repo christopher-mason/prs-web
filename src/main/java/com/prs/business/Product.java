@@ -8,7 +8,9 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int vendorId;
+	@ManyToOne
+	@JoinColumn(name = "VendorID")
+	private Vendor vendor;
 	private String partNumber;
 	private String name;
 	private double price;
@@ -19,10 +21,10 @@ public class Product {
 		super();
 	}
 
-	public Product(int id, int vendorId, String partNumber, String name, double price, String unit, String photoPath) {
+	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
 		super();
 		this.id = id;
-		this.vendorId = vendorId;
+		this.vendor = vendor;
 		this.partNumber = partNumber;
 		this.name = name;
 		this.price = price;
@@ -38,12 +40,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public int getVendorId() {
-		return vendorId;
+	public Vendor getVendor() {
+		return vendor;
 	}
 
-	public void setVendorId(int vendorId) {
-		this.vendorId = vendorId;
+	public void setVendor(Vendor vendor) {
+		this.vendor = vendor;
 	}
 
 	public String getPartNumber() {
@@ -85,7 +87,7 @@ public class Product {
 	public void setPhotoPath(String photoPath) {
 		this.photoPath = photoPath;
 	}
-	
-	
 
+	
+	
 }

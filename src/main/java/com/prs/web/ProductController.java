@@ -11,7 +11,7 @@ import com.prs.db.ProductRepo;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 	/*
 	 *  A controller will implement 5 CRUD methods:

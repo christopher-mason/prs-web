@@ -8,11 +8,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String username;
+	private String userName;
 	private String password;
 	private String firstName;
 	private String lastName;
-	private String phoneNmber;
+	private String phoneNumber;
 	private String email;
 	private int isReviewer;
 	private int isAdmin;
@@ -21,15 +21,15 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, String firstName, String lastName, String phoneNmber,
+	public User(int id, String userName, String password, String firstName, String lastName, String phoneNumber,
 			String email, int isReviewer, int isAdmin) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.phoneNmber = phoneNmber;
+		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.isReviewer = isReviewer;
 		this.isAdmin = isAdmin;
@@ -43,12 +43,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -75,12 +75,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getPhoneNmber() {
-		return phoneNmber;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhoneNmber(String phoneNmber) {
-		this.phoneNmber = phoneNmber;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
