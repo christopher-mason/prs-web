@@ -11,7 +11,7 @@ import com.prs.db.RequestRepo;
 public class RequestController {
 	
 	@Autowired
-	public RequestRepo requestRepo;
+	public RequestRepo requestRepo; 
 	
 	
 
