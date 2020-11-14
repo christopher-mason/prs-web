@@ -53,5 +53,12 @@ public class LineItemController {
 				System.out.println("Error - Line Item not found with ID: " + id);
 			}
 			return li.get();
-		}
+	}
+	
+	// list line items for a purchase request
+	@GetMapping("/lines-for-pr/{id}")
+	public List<LineItem> getLineItemByPr(@RequestParam int id){
+		return lineItemRepo.findByRequestId(id);
+		
+	}
 }
