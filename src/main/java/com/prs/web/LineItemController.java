@@ -34,5 +34,24 @@ public class LineItemController {
 	public LineItem addLineItem(@RequestBody LineItem li) {
 		li = lineItemRepo.save(li);
 			return li;
+	}
+	
+	// Update User
+	@PutMapping("/")
+	public LineItem updateLineItem(@RequestBody LineItem li) {
+		li = lineItemRepo.save(li);
+			return li;
+	}
+	
+	// Delete User
+	@DeleteMapping("/{id}")
+	public LineItem deleteLineItem(@PathVariable int id) {
+		Optional<LineItem> li = lineItemRepo.findById(id);
+			if (li.isPresent()) {
+				lineItemRepo.deleteById(id);
+			} else {
+				System.out.println("Error - Line Item not found with ID: " + id);
+			}
+			return li.get();
 		}
 }
