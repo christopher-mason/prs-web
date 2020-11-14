@@ -37,7 +37,7 @@ public class VendorController {
 	}
 	
 	// Update Vendor
-	@PutMapping("/{id}")
+	@PutMapping("/")
 	public Vendor updateVendor(@RequestBody Vendor v) {
 		v = vendorRepo.save(v);
 		return v;
