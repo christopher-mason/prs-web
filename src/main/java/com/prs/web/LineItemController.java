@@ -28,4 +28,11 @@ public class LineItemController {
 	public Optional<LineItem> getLineItemById(@PathVariable int id) {
 		return lineItemRepo.findById(id);
 	}
+	
+	// Add User
+	@PostMapping("/")
+	public LineItem addLineItem(@RequestBody LineItem li) {
+		li = lineItemRepo.save(li);
+			return li;
+		}
 }
