@@ -58,7 +58,7 @@ public class LineItemController {
 	// list line items for a purchase request
 	@GetMapping("/lines-for-pr/{id}")
 	public List<LineItem> getLineItemByPr(@RequestParam int id){
-		return lineItemRepo.findByRequestId(id);
+		return lineItemRepo.findByRequestId(id); 
 		
 	}
 }
