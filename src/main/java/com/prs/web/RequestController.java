@@ -1,5 +1,6 @@
 package com.prs.web;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +56,35 @@ public class RequestController {
 			return r.get();
 		}
 	
+		// Request Review
+		@PutMapping("/submit-review")
+		public Request submitForReview(@RequestBody Request r) {
+			if (r.getTotal() <= 50.00) {
+				r.setStatus("Approved");
+			} else {
+				r.setStatus("Review");
+			}
+			
+			r.setSubmittedDate(LocalDateTime.now());
+			r = requestRepo.save(r);
+			return r;
+		}
+		
+		// Request Approve
+		@PutMapping("/approve")
+		public Request approveRequest(@RequestBody Request r) {
+			r.setStatus("Approved");
+			r = requestRepo.save(r);
+			return r;
+		}
+		
+		// Request Approve
+		@PutMapping("/reject")
+		public Request rejectRequest(@RequestBody Request r) {
+			r.setStatus("Rejected");
+			r = requestRepo.save(r);
+			return r;
+		}
 	
 
 }
