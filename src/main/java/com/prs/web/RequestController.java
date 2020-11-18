@@ -83,7 +83,7 @@ public class RequestController {
 		public Request rejectRequest(@RequestBody Request r) {
 			r.setStatus("Rejected");
 			r = requestRepo.save(r);
-			return r;
+			return r; 
 		}
 	
 
