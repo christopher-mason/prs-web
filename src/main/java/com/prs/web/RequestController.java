@@ -30,6 +30,12 @@ public class RequestController {
 			return requestRepo.findById(id);
 		}
 		
+		// GET request review
+		@GetMapping("/list-review/{id}")
+		public Optional<Request> reviewRequest(@PathVariable int id) {
+			return requestRepo.findByUserNameAndStatus(id, "Review");
+		}
+		
 		// Add Request
 		@PostMapping("/")
 		public Request addRequest(@RequestBody Request r) {

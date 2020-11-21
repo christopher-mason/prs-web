@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.prs.business.LineItem;
+import com.prs.business.Product;
+import com.prs.business.Request;
 import com.prs.db.LineItemRepo;
+import com.prs.db.RequestRepo;
 
 @CrossOrigin
 @RestController
@@ -16,6 +19,9 @@ public class LineItemController {
 
 	@Autowired
 	private LineItemRepo lineItemRepo;
+	
+	@Autowired
+	private RequestRepo requestRepo;
 	
 	// Get all Line Items
 	@GetMapping("/")
@@ -33,14 +39,16 @@ public class LineItemController {
 	@PostMapping("/")
 	public LineItem addLineItem(@RequestBody LineItem li) {
 		li = lineItemRepo.save(li);
-			return li;
+		recalculateTotal(li);
+		return li;
 	}
 	
 	// Update User
 	@PutMapping("/")
 	public LineItem updateLineItem(@RequestBody LineItem li) {
 		li = lineItemRepo.save(li);
-			return li;
+		recalculateTotal(li);
+		return li;
 	}
 	
 	// Delete User
@@ -49,6 +57,7 @@ public class LineItemController {
 		Optional<LineItem> li = lineItemRepo.findById(id);
 			if (li.isPresent()) {
 				lineItemRepo.deleteById(id);
+				recalculateTotal(li.get());
 			} else {
 				System.out.println("Error - Line Item not found with ID: " + id);
 			}
@@ -60,6 +69,22 @@ public class LineItemController {
 	public List<LineItem> getLineItemByPr(@PathVariable int id){
 		return lineItemRepo.findByRequestId(id); 
 		
+	}
+	
+	// re-calculate total for add edit and DELETE
+	// loop through and total new sum
+	public void recalculateTotal(LineItem li) {	
+		List<LineItem> lineItems = lineItemRepo.findByRequestId(li.getRequest().getId());
+		
+		double total = 0.0;
+		for(LineItem lineItem : lineItems) {
+			Product p = lineItem.getProduct();
+			total += (p.getPrice() * lineItem.getQuantity());
+		}
+		
+		Request request = li.getRequest();
+		request.setTotal(total);
+		requestRepo.save(request);
 	}
 	
 	
