@@ -33,7 +33,7 @@ public class RequestController {
 		// GET request review
 		@GetMapping("/list-review/{id}")
 		public Optional<Request> reviewRequest(@PathVariable int id) {
-			return requestRepo.findByUserNameAndStatus(id, "Review");
+			return requestRepo.findByUserIdAndStatus(id, "Review");
 		}
 		
 		// Add Request
